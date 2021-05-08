@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Composechart">
         <activity
+            android:name=".ExampleList"
+            android:exported="true"
+            android:label="@string/title_activity_example_list"
+            android:theme="@style/Theme.Composechart.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

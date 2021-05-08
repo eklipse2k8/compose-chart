@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ChartExample</string>
+    <string name="title_activity_example_list">ExampleList</string>
 </resources>
