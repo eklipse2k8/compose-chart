@@ -28,7 +28,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun ComposechartTheme(
+fun ComposeChartTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
   content: @Composable() () -> Unit
 ) {

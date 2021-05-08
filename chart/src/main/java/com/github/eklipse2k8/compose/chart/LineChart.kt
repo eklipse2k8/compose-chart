@@ -31,7 +31,7 @@ fun LineDataSet(
 }
 
 @Composable
-fun LineChart(modifier: Modifier = Modifier, data: LineChartDataScope.() -> Unit): MpLineChart {
+fun LineChart(modifier: Modifier = Modifier, data: LineChartDataScope.() -> Unit) {
   val context = LocalContext.current
   val chart = remember { MpLineChart(context) }
 
@@ -50,8 +50,6 @@ fun LineChart(modifier: Modifier = Modifier, data: LineChartDataScope.() -> Unit
           chart.data.addDataSet(dataSet)
         }
       })
-
-  return chart
 }
 
 @Preview(widthDp = 300, heightDp = 400)
