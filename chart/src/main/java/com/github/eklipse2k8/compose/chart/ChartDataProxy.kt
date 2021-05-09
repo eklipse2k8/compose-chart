@@ -13,5 +13,5 @@ class ChartDataProxy<T> where T : List<Entry> {
 
   @ExperimentalStdlibApi
   fun getDataSetChanges(): List<T> =
-    buildList { this.addAll(dataSetStack) }.also { dataSetStack.clear() }
+      buildList { this.addAll(dataSetStack) }.also { dataSetStack.clear() }
 }
