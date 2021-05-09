@@ -8,15 +8,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import com.github.mikephil.charting.charts.LineChart as MpLineChart
 
+@ExperimentalStdlibApi
 @Composable
 fun LineChart(modifier: Modifier = Modifier, content: ChartDataScope.() -> Unit) {
-
   val chartDataEntriesState = rememberStateOfEntriesProvider(content)
 
   AndroidView(
-      factory = { MpLineChart(it) },
+      factory = ::MpLineChart,
       modifier = modifier,
       update = {
+        chartDataEntriesState.value.proxy.getDataSetChanges()
         // it.data.addDataSet()
         // ChartDataScopeImpl(it).content()
       })
@@ -30,6 +31,7 @@ private fun rememberStateOfEntriesProvider(
   return remember { derivedStateOf { ChartDataScopeImpl().apply(latestContent.value) } }
 }
 
+@ExperimentalStdlibApi
 @Preview(widthDp = 300, heightDp = 400)
 @Composable
 fun SimpleLineChart() {

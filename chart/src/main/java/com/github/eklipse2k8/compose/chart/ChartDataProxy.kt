@@ -1,9 +1,8 @@
 package com.github.eklipse2k8.compose.chart
 
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.interfaces.datasets.IDataSet
+import com.github.eklipse2k8.compose.chart.data.Entry
 
-internal class ChartDataProxy<T> where T : IDataSet<Entry> {
+class ChartDataProxy<T> where T : List<Entry> {
   private val dataSetStack = mutableListOf<T>()
 
   fun addDataSet(d: T) {
