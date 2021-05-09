@@ -7,7 +7,7 @@ import com.github.eklipse2k8.compose.chart.data.Entry
 import com.github.mikephil.charting.data.LineDataSet as MpLineDataSet
 
 @Composable
-fun ChartDataScopeImpl.LineChartDataSet(
+fun LineChartDataSet(
     label: String? = null,
     dataSetList: List<Entry> = emptyList(),
 ) {
@@ -15,5 +15,5 @@ fun ChartDataScopeImpl.LineChartDataSet(
   val mpDataSet = dataSetList.map { it.toMpEntry(context) }
   val dataSet = remember { MpLineDataSet(mpDataSet, label) }
 
-  dataProvider.data.addDataSet(dataSet)
+  //dataProvider.data.addDataSet(dataSet)
 }

@@ -1,13 +1,22 @@
 package com.github.eklipse2k8.compose.chart
 
-import androidx.compose.runtime.Immutable
-import com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider
+import androidx.compose.runtime.*
+import com.github.eklipse2k8.compose.chart.data.Entry
 
 @ChartDataScopeMarker
-@Immutable
-abstract class ChartDataScope {
-  internal abstract val dataProvider: BarLineScatterCandleBubbleDataProvider
+@Stable
+interface ChartDataEntryScope {
+  fun addEntries(entries: List<Entry>)
 }
 
-class ChartDataScopeImpl(override val dataProvider: BarLineScatterCandleBubbleDataProvider) :
-    ChartDataScope()
+@ChartDataScopeMarker
+@Stable
+interface ChartDataScope {
+  fun dataSet(key: Any? = null, content: @Composable ChartDataEntryScope.() -> Unit)
+}
+
+internal class ChartDataScopeImpl() : ChartDataScope, ChartDataEntriesProvider {
+  override fun dataSet(key: Any?, content: ChartDataEntryScope.() -> Unit) {}
+}
+
+interface ChartDataEntriesProvider {}
