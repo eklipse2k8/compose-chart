@@ -5,9 +5,6 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.VectorPainter
 import com.github.mikephil.charting.data.Entry as MpEntry
 
 @Immutable

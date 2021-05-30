@@ -3,34 +3,24 @@ package com.github.eklipse2k8.compose.chart
 import androidx.compose.runtime.*
 import com.github.eklipse2k8.compose.chart.data.Entry
 
-@ChartDataScopeMarker
-@Stable
-interface ChartDataEntryScope {
-  fun addEntries(entries: List<Entry>)
-}
+@ChartDataScopeMarker @Stable interface ChartDataEntryScope
 
 @ChartDataScopeMarker
 @Stable
 interface ChartDataScope {
-  fun dataSet(key: Any? = null, content: @Composable ChartDataEntryScope.() -> Unit)
+  fun dataSet(label: String = "", entries: ChartDataEntryScope.() -> List<Entry>)
 }
 
 internal class ChartDataScopeImpl : ChartDataScope, ChartDataEntriesProvider {
-  override fun dataSet(key: Any?, content: ChartDataEntryScope.() -> Unit) {
-    content(entriesScope)
-    // TODO: (jarjoura) pass in scope a way to get at the list proxy
-  }
-
-  private val entriesScope =
-      object : ChartDataEntryScope {
-        override fun addEntries(entries: List<Entry>) {
-          this@ChartDataScopeImpl.proxy.addDataSet(entries)
-        }
-      }
+  private val scope = object : ChartDataEntryScope {}
 
   override val proxy = ChartDataProxy<List<Entry>>()
+
+  override fun dataSet(label: String, entries: ChartDataEntryScope.() -> List<Entry>) {
+    proxy.addDataSet(label, entries(scope))
+  }
 }
 
-interface ChartDataEntriesProvider {
+internal interface ChartDataEntriesProvider {
   val proxy: ChartDataProxy<List<Entry>>
 }
